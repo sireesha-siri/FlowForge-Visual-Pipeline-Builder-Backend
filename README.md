@@ -13,6 +13,7 @@ FastAPI-powered backend for validating visual pipelines with DAG (Directed Acycl
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Python 3.8 or higher
 - pip
 
@@ -63,6 +64,7 @@ backend/
 Validates a pipeline and checks if it forms a valid DAG.
 
 **Request Body:**
+
 ```json
 {
   "nodes": [
@@ -93,6 +95,7 @@ Validates a pipeline and checks if it forms a valid DAG.
 ```
 
 **Response:**
+
 ```json
 {
   "num_nodes": 2,
@@ -102,6 +105,7 @@ Validates a pipeline and checks if it forms a valid DAG.
 ```
 
 **Status Codes:**
+
 - `200 OK` - Pipeline validated successfully
 - `422 Unprocessable Entity` - Invalid request format
 
@@ -110,6 +114,7 @@ Validates a pipeline and checks if it forms a valid DAG.
 Health check endpoint.
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -271,6 +276,7 @@ def test_valid_dag():
 ```
 
 Run tests:
+
 ```bash
 pip install pytest
 pytest test_main.py
@@ -308,6 +314,7 @@ pip install -r requirements.txt
 ### CORS Errors from Frontend
 
 Check:
+
 1. Backend is running
 2. `allow_origins` includes frontend URL
 3. Frontend is using correct backend URL
@@ -327,6 +334,7 @@ pip install -r requirements.txt
 ### Railway.app (Recommended)
 
 1. Create `railway.json`:
+
 ```json
 {
   "$schema": "https://railway.app/railway.schema.json",
@@ -342,6 +350,7 @@ pip install -r requirements.txt
 ```
 
 2. Deploy:
+
 ```bash
 # Install Railway CLI
 npm i -g @railway/cli
@@ -355,6 +364,7 @@ railway up
 ### Render.com
 
 1. Create `render.yaml`:
+
 ```yaml
 services:
   - type: web
@@ -369,11 +379,13 @@ services:
 ### Heroku
 
 1. Create `Procfile`:
+
 ```
 web: uvicorn main:app --host 0.0.0.0 --port $PORT
 ```
 
 2. Deploy:
+
 ```bash
 heroku create flowforge-api
 git push heroku main
@@ -382,6 +394,7 @@ git push heroku main
 ### Docker
 
 1. Create `Dockerfile`:
+
 ```dockerfile
 FROM python:3.11-slim
 
@@ -396,6 +409,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 2. Build and run:
+
 ```bash
 docker build -t flowforge-backend .
 docker run -p 8000:8000 flowforge-backend
@@ -404,17 +418,20 @@ docker run -p 8000:8000 flowforge-backend
 ### Environment Variables
 
 Set these in your hosting platform:
+
 - `PORT` - Server port (usually auto-set)
 - `CORS_ORIGINS` - Allowed frontend URLs (if configured)
 
 ### Production Considerations
 
 1. **Update CORS origins** in `main.py`:
+
 ```python
 allow_origins=["https://your-frontend-domain.com"]
 ```
 
 2. **Add environment variables**:
+
 ```python
 import os
 from typing import List
@@ -429,6 +446,7 @@ app.add_middleware(
 ```
 
 3. **Add rate limiting** (optional):
+
 ```bash
 pip install slowapi
 ```
@@ -447,6 +465,7 @@ def parse_pipeline(request: Request, pipeline: PipelineRequest):
 ```
 
 4. **Add logging**:
+
 ```python
 import logging
 
@@ -469,11 +488,13 @@ def parse_pipeline(pipeline: PipelineRequest):
 ## 🔒 Security
 
 ### Current State (Development)
+
 - CORS: Open to all origins
 - No authentication
 - No rate limiting
 
 ### Production Recommendations
+
 - ✅ Restrict CORS to specific domains
 - ✅ Add API key authentication
 - ✅ Implement rate limiting
@@ -496,6 +517,4 @@ For questions or feedback, feel free to reach out.
 
 ---
 
-Built with ❤️ using FastAPI and Python#   F l o w F o r g e - V i s u a l - P i p e l i n e - B u i l d e r - B a c k e n d  
- #   F l o w F o r g e - V i s u a l - P i p e l i n e - B u i l d e r - B a c k e n d  
- 
+Built with ❤️ using FastAPI and Python
